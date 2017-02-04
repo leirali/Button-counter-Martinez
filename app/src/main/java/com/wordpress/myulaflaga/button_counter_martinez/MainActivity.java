@@ -11,14 +11,48 @@
 
 package com.wordpress.myulaflaga.button_counter_martinez;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+/**
+ * This app calculates the value of experience in Android programming on the market
+ */
+public class MainActivity extends ActionBarActivity {
+
+    int quantity = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+
+    //increment
+    public void increment(View view) {
+        quantity = quantity + 1;
+
+    }
+   //decrement
+    public void decrement(View view) {
+        quantity = quantity - 1;
+    }
+
+
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putBoolean("My boolean", true);
+        savedInstanceState.putDouble("My double", 1.9);
+        savedInstanceState.putInt("My integer", 1);
+        savedInstanceState.putString("My String", "welcome back to android!");
+    }
+
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        boolean myBoolean = savedInstanceState.getBoolean("My boolean");
+        double myDouble = savedInstanceState.getDouble("my double");
+        int myInt = savedInstanceState.getInt("my int");
+        String myString = savedInstanceState.getString("my string");
+    }
+
 }
