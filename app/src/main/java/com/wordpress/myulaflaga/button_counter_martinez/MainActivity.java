@@ -12,15 +12,14 @@
 package com.wordpress.myulaflaga.button_counter_martinez;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 
-/**
- * This app calculates the value of experience in Android programming on the market
- */
-public class MainActivity extends ActionBarActivity {
-
-    int quantity = 0;
+public class MainActivity extends AppCompatActivity {
+    int inc = 0;
+    int dec = 0;
+    int total = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,18 +27,28 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
     }
 
-    //increment
-    public void increment(View view) {
-        quantity = quantity + 1;
+    public void increase(View view) {
 
-    }
-   //decrement
-    public void decrement(View view) {
-        quantity = quantity - 1;
+        inc = inc++;
+        displayForTeamA(inc);
     }
 
+    public void decrease(View view) {
+        dec = dec--;
+        displayForTeamA(dec);
+    }
 
-    public void onSaveInstanceState(Bundle savedInstanceState) {
+    public void resetButton(View view) {
+        total = 0;
+        displayForTeamA(total);
+    }
+
+    private void displayForTeamA(int score) {
+        TextView scoreView = (TextView) findViewById(R.id.increase);
+        scoreView.setText("" + score);
+    }
+
+    public void onSaveInstanceState( Bundle savedInstanceState){
         super.onSaveInstanceState(savedInstanceState);
         savedInstanceState.putBoolean("My boolean", true);
         savedInstanceState.putDouble("My double", 1.9);
@@ -47,7 +56,8 @@ public class MainActivity extends ActionBarActivity {
         savedInstanceState.putString("My String", "welcome back to android!");
     }
 
-    public void onRestoreInstanceState(Bundle savedInstanceState) {
+    @Override
+    public void onRestoreInstanceState( Bundle savedInstanceState){
         super.onRestoreInstanceState(savedInstanceState);
         boolean myBoolean = savedInstanceState.getBoolean("My boolean");
         double myDouble = savedInstanceState.getDouble("my double");
